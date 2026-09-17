@@ -264,8 +264,16 @@ def format_thai_date(dt):
     day_name = DAY_NAMES[dt.weekday()]
     return f"{day_name} {d} {m} {y}"
 
-st.caption("AI ช่วยจัดทำร่างจากโครงการสอน กรุณาตรวจสอบและเติมผลที่เกิดขึ้นจริงก่อนนำเอกสารไปใช้")
-if st.button(f"สร้างร่างบันทึก {target_weeks} สัปดาห์ →", use_container_width=True, type="primary"):
+action_left, action_right = st.columns(2, gap="large")
+with action_right:
+    st.caption("AI ช่วยจัดทำร่างจากโครงการสอน กรุณาตรวจสอบและเติมผลที่เกิดขึ้นจริงก่อนนำเอกสารไปใช้")
+    generate_clicked = st.button(
+        f"สร้างร่างบันทึก {target_weeks} สัปดาห์ →",
+        use_container_width=True,
+        type="primary"
+    )
+
+if generate_clicked:
     st.session_state.pop("generated_document", None)
     api_key = st.session_state.get("confirmed_gemini_api_key", "")
     if not api_key:
