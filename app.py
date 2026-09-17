@@ -80,7 +80,7 @@ if not st.session_state.authenticated:
     <div class="main-header">
         <div class="eyebrow">VOCATIONAL TEACHING ASSISTANT</div>
         <h1>บันทึกหลังการสอน<br/>ผู้ช่วย AI สำหรับครูอาชีวศึกษา</h1>
-        <p>ใช้ไปเถอะ จะอะไรเยอะแยะ</p>
+        <p style="text-align:center;">ใช้ไปเถอะ จะอะไรเยอะแยะ</p>
     </div>
     """, unsafe_allow_html=True)
 
