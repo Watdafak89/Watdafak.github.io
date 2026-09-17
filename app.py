@@ -119,6 +119,9 @@ with st.sidebar:
     st.markdown('<span class="badge-tag">● พร้อมใช้งาน</span>', unsafe_allow_html=True)
 
     api_key_input = st.text_input("🔑 Gemini API Key:", type="password", placeholder="วาง API Key ของคุณ", key="gemini_api_key")
+    if st.button("ตกลง", key="confirm_api_key", use_container_width=True):
+        st.session_state.confirmed_gemini_api_key = api_key_input.strip()
+        st.success("บันทึก API Key แล้ว")
     st.markdown("[รับ Gemini API Key](https://aistudio.google.com/apikey)")
     st.caption("เมื่อกดสร้างร่าง ระบบจะส่งโครงการสอนให้ Google Gemini ประมวลผล")
     st.divider()
@@ -131,11 +134,6 @@ with st.sidebar:
         department = st.text_input("ระบุสาขาวิชาของคุณ:", value="")
     else:
         department = dept_choice
-
-    st.markdown("---")
-    if st.button("🔒 ล็อกระบบกลับ"):
-        st.session_state.clear()
-        st.rerun()
 
     st.markdown("""
     <div style="font-size: 12px; color: #94A3B8; text-align: center; margin-top: 25px; line-height: 1.6;">
@@ -240,9 +238,9 @@ summary[2].metric("ตารางสอน", f"{slots_count} คาบ / สั
 st.caption("AI ช่วยจัดทำร่างจากโครงการสอน กรุณาตรวจสอบและเติมผลที่เกิดขึ้นจริงก่อนนำเอกสารไปใช้")
 if st.button(f"สร้างร่างบันทึก {target_weeks} สัปดาห์ →", use_container_width=True, type="primary"):
     st.session_state.pop("generated_document", None)
-    api_key = api_key_input.strip() if api_key_input else ""
+    api_key = st.session_state.get("confirmed_gemini_api_key", "")
     if not api_key:
-        st.warning("⚠️ กรุณากรอก Gemini API Key ที่แถบด้านซ้ายก่อนเริ่มใช้งาน")
+        st.warning("⚠️ กรุณากรอก Gemini API Key แล้วกด ตกลง ที่แถบด้านซ้ายก่อนเริ่มใช้งาน")
         st.stop()
     if not tpl_file:
         st.warning("⚠️ กรุณาแนบไฟล์ template.docx ของวิทยาลัย")
