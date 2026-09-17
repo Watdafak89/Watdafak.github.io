@@ -18,38 +18,56 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# สไตล์ตกแต่ง UI สีสัน สดใส มีมิติ
+# สไตล์หน้าจอหลัก
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700&display=swap');
+:root {
+    --ink: #18324a;
+    --muted: #64788a;
+    --line: #dbe5ea;
+    --surface: #ffffff;
+    --canvas: #f3f7f8;
+    --teal: #087f8c;
+    --teal-dark: #05616b;
+    --teal-soft: #e5f4f3;
+}
 html, body, [data-testid="stAppViewContainer"], input, button, textarea, label, h1, h2, h3, p {
     font-family: 'Noto Sans Thai', sans-serif !important;
 }
-.block-container {max-width: 1400px; padding-top: 2rem; padding-bottom: 2rem;}
-[data-testid="stHeader"] {background: transparent;}
-.main-header {background: #123273; color:white; padding:32px 36px; border-radius:20px;
-    margin-bottom:28px; border-bottom:5px solid #528BFF; position:relative; overflow:hidden;}
-.main-header:after {content:""; position:absolute; right:-40px; top:-100px; width:320px; height:320px;
-    border:50px solid rgba(255,255,255,.035); border-radius:50%; pointer-events:none;}
-.main-header h1 {color:white !important; font-size:clamp(1.5rem,2.4vw,2.2rem); line-height:1.55; font-weight:700; margin:4px 0 10px;}
-.main-header p {color:#D3E2FF !important; font-size:16px; line-height:1.8; margin:0; text-align:center;}
-.eyebrow {color:#8EB8FF; font-size:12px; letter-spacing:2px; font-weight:700; margin-bottom:8px;}
-h2, h3 {font-size:1.15rem !important; line-height:1.7 !important;}
-[data-testid="stSidebar"] {background:#fff; border-right:1px solid #E1E7F1;}
-[data-testid="stSidebar"] > div:first-child {padding-top:1.5rem;}
-[data-testid="stVerticalBlockBorderWrapper"] > div {border-radius:16px;}
-[data-testid="stFileUploader"] {background:#fff; border:1px solid #DEE6F2; padding:14px; border-radius:14px;}
-[data-testid="stFileUploaderDropzone"] {background:#F5F8FE;}
-[data-testid="stTextInput"] input, [data-testid="stTextArea"] textarea {font-size:16px;}
-.stButton > button[kind="primary"], .stDownloadButton > button {background:#2457E7; color:white; border:0; min-height:48px; border-radius:10px; font-weight:600;}
-.stButton > button {min-height:44px; border-radius:10px;}
-.stButton > button:hover {border-color:#2457E7; color:#2457E7;}
-.stButton > button[kind="primary"]:hover {background:#1845C5; color:white;}
-.badge-tag {display:inline-block; background:#E7F7F0; color:#147D55; padding:5px 12px; border-radius:20px; font-size:13px; font-weight:600; margin-bottom:18px;}
-.footer-box {text-align:center; padding:22px 12px; margin-top:35px; border-top:1px solid #DEE6F2; color:#65738C; font-size:13px; line-height:1.9;}
-.footer-badge {color:#2457E7; font-size:12px; font-weight:600; letter-spacing:1px;}
-[data-testid="stMetric"] {background:white; border:1px solid #DEE6F2; border-radius:14px; padding:16px 20px;}
-@media(max-width:640px) {.block-container {padding:1rem;} .main-header {padding:22px;} .main-header h1 {font-size:1.5rem;} }
+body, [data-testid="stAppViewContainer"] {background:var(--canvas); color:var(--ink);}
+.block-container {max-width:1400px; padding-top:1.5rem; padding-bottom:2.5rem;}
+[data-testid="stHeader"] {background:transparent;}
+.main-header {background:#123f4b; color:white; padding:2.1rem 2.35rem; border-radius:12px;
+    margin-bottom:1.8rem; border-left:6px solid #55c5bb; position:relative; overflow:hidden;
+    box-shadow:0 12px 30px rgba(24,50,74,.10);}
+.main-header:after {content:""; position:absolute; right:-70px; top:-130px; width:300px; height:300px;
+    border:1px solid rgba(150,235,222,.28); transform:rotate(35deg); pointer-events:none;}
+.main-header h1 {color:white !important; font-size:clamp(1.55rem,2.4vw,2.25rem); line-height:1.45; font-weight:700; margin:0 0 .45rem; position:relative; z-index:1;}
+.main-header p {color:#c9e9e5 !important; font-size:15px; line-height:1.8; margin:0; position:relative; z-index:1;}
+.eyebrow {color:#91e0d5; font-size:11px; letter-spacing:1.8px; font-weight:700; margin-bottom:.55rem;}
+h2, h3 {color:var(--ink) !important; font-size:1.08rem !important; line-height:1.6 !important; letter-spacing:0 !important;}
+[data-testid="stSidebar"] {background:var(--surface); border-right:1px solid var(--line);}
+[data-testid="stSidebar"] > div:first-child {padding-top:1.25rem;}
+[data-testid="stSidebar"] h2, [data-testid="stSidebar"] h3 {margin-top:.7rem;}
+[data-testid="stVerticalBlockBorderWrapper"] > div {border-radius:10px; border-color:var(--line);}
+[data-testid="stFileUploader"] {background:var(--surface); border:1px solid var(--line); padding:12px; border-radius:10px;}
+[data-testid="stFileUploaderDropzone"] {background:#f8fbfb; border:1px dashed #b8d8d7; border-radius:8px;}
+[data-testid="stTextInput"] input, [data-testid="stTextArea"] textarea {font-size:15px; border-color:#cbd9df; border-radius:8px; background:#fff;}
+[data-testid="stTextInput"] input:focus, [data-testid="stTextArea"] textarea:focus {border-color:var(--teal); box-shadow:0 0 0 1px var(--teal);}
+[data-testid="stSelectbox"] div[data-baseweb="select"] > div {border-color:#cbd9df; border-radius:8px;}
+.stButton > button[kind="primary"], .stDownloadButton > button {background:var(--teal); color:white; border:0; min-height:46px; border-radius:8px; font-weight:600; box-shadow:0 5px 12px rgba(8,127,140,.16);}
+.stButton > button {min-height:42px; border-radius:8px; border-color:#cbd9df; color:var(--ink); font-weight:500;}
+.stButton > button:hover {border-color:var(--teal); color:var(--teal-dark);}
+.stButton > button[kind="primary"]:hover {background:var(--teal-dark); color:white;}
+.badge-tag {display:inline-block; background:var(--teal-soft); color:var(--teal-dark); padding:4px 10px; border-radius:6px; font-size:12px; font-weight:600; margin-bottom:1rem;}
+.footer-box {text-align:center; padding:20px 12px; margin-top:2rem; border-top:1px solid var(--line); color:var(--muted); font-size:12px; line-height:1.9;}
+.footer-badge {color:var(--teal-dark); font-size:11px; font-weight:700; letter-spacing:1px;}
+[data-testid="stMetric"] {background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:14px 18px; box-shadow:0 5px 16px rgba(24,50,74,.04);}
+[data-testid="stMetricLabel"] {color:var(--muted);}
+[data-testid="stMetricValue"] {color:var(--ink); font-size:1.35rem;}
+[data-testid="stAlert"] {border-radius:8px;}
+@media(max-width:640px) {.block-container {padding:1rem .8rem 2rem;} .main-header {padding:1.5rem 1.25rem;} .main-header h1 {font-size:1.5rem;} .main-header p {font-size:14px;} }
 </style>
 """, unsafe_allow_html=True)
 
