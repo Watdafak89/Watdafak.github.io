@@ -100,19 +100,19 @@ if not st.session_state.authenticated:
     st.markdown("""
     <div class="main-header login-header">
         <h1>บันทึกหลังการสอน<br/>ผู้ช่วย AI สำหรับครูอาชีวศึกษา</h1>
-        <p style="text-align:center;">ใช้ไปเถอะ จะอะไรเยอะแยะ</p>
+        <p style="text-align:center;">อะไรลดภาระงานได้ก็ใช้ไปเถอะ</p>
     </div>
     """, unsafe_allow_html=True)
 
     col_l1, col_l2, col_l3 = st.columns([1, 1.2, 1])
     with col_l2:
-        st.caption("เริ่มต้นใช้งาน • สำหรับครูผู้สอน")
-        st.subheader("🔑 ยืนยันสิทธิ์การเข้าใช้งาน")
-        pass_input = st.text_input("รหัสปลดล็อกระบบ (Passcode):", type="password", placeholder="กรอกรหัสจากผู้ดูแลระบบ...")
+        
+      
+        pass_input = st.text_input("กรอกรหัสเข้าใช้งาน :", type="password", placeholder="..............")
         if st.button("เข้าสู่ระบบ →", use_container_width=True, type="primary"):
             if pass_input == SYSTEM_PASSCODE:
                 st.session_state.authenticated = True
-                st.success("✅ ปลดล็อกสำเร็จ กำลังเข้าสู่ระบบ...")
+                st.success("✅  กำลังเข้าสู่ระบบ...")
                 st.rerun()
             else:
                 st.error("❌ รหัสผ่านไม่ถูกต้อง กรุณาติดต่อเจ้าของระบบ")
@@ -121,7 +121,7 @@ if not st.session_state.authenticated:
         st.markdown("""
         <div class="footer-box" style="margin-top: 20px;">
             <div class="footer-badge">🛡️ PROPRIETARY SOFTWARE</div><br/>
-            สงวนลิขสิทธิ์ พัฒนาโดย <b>นายณัฐวุฒิ หล้าปงสาย</b> ครูผู้ช่วย วิทยาลัยเทคนิคจันทบุรี
+            สงวนลิขสิทธิ์ พัฒนาโดย <b>นายวัชรพงษ์ สุขแช่ม</b> ครู วิทยาลัยเทคนิคจันทบุรี
         </div>
         """, unsafe_allow_html=True)
     st.stop()
@@ -133,14 +133,8 @@ THAI_MONTHS = [
 ]
 DAY_NAMES = ["วันจันทร์", "วันอังคาร", "วันพุธ", "วันพฤหัสบดี", "วันศุกร์", "วันเสาร์", "วันอาทิตย์"]
 DEPARTMENT_OPTIONS = [
-    "การจัดการโลจิสติกส์และซัพพลายเชน",
     "เทคโนโลยีสารสนเทศ",
-    "คอมพิวเตอร์ธุรกิจ",
-    "การบัญชี",
-    "การตลาด",
-    "ช่างยนต์",
-    "ช่างไฟฟ้ากำลัง",
-    "ช่างอิเล็กทรอนิกส์",
+    "เการจัดการโลจิสติกส์และซัพพลายเชน",
     "ช่างก่อสร้าง",
     "อื่นๆ (ระบุเอง)"
 ]
@@ -227,14 +221,14 @@ with col2:
     total_hours = 0
 
     for i in range(slots_count):
-        st.markdown(f"**📌 รายละเอียดคาบที่ {i+1}:**")
+        st.markdown(f"**📌 รายละเอียด {i+1}:**")
         sc1, sc2, sc3 = st.columns(3)
         with sc1:
-            d_val = st.selectbox(f"วัน (คาบที่ {i+1}):", DAY_NAMES, index=default_days[i % len(default_days)], key=f"day_slot_{i}")
+            d_val = st.selectbox(f"วัน (ค {i+1}):", DAY_NAMES, index=default_days[i % len(default_days)], key=f"day_slot_{i}")
         with sc2:
             default_start, default_end = default_times[i]
             start_time = st.selectbox(
-                f"เวลาเริ่มต้น (คาบที่ {i+1}):", time_options[:-1],
+                f"เวลาเริ่มต้น ( {i+1}):", time_options[:-1],
                 index=time_options.index(default_start), key=f"start_time_slot_{i}"
             )
         with sc3:
@@ -243,7 +237,7 @@ with col2:
             if st.session_state.get(end_key) not in end_options:
                 st.session_state[end_key] = default_end if default_end in end_options else end_options[0]
             end_time = st.selectbox(
-                f"เวลาสิ้นสุด (คาบที่ {i+1}):", end_options, key=end_key
+                f"เวลาสิ้นสุด ( {i+1}):", end_options, key=end_key
             )
         t_val = f"{start_time}-{end_time} น."
         slots_info.append({"day": d_val, "time": t_val})
@@ -476,7 +470,7 @@ if "generated_document" in st.session_state:
 st.markdown("""
 <div class="footer-box">
 
-    พัฒนาโดย <b>นายวัชรพงษ์  สุขแช่ม</b> ครู วิทยาลัยเทคนิคจันทบุรี<br/>
+   <b> พัฒนาโดย <b>นายวัชรพงษ์  สุขแช่ม</b> ครู วิทยาลัยเทคนิคจันทบุรี<br/>
     <span style="font-size: 12px; color: #94A3B8;">ขับเคลื่อนด้วย Streamlit & Google Gemini AI Flash Engine</span>
 </div>
 """, unsafe_allow_html=True)
