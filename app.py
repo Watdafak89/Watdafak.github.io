@@ -466,8 +466,11 @@ if generate_clicked:
 
 if "generated_document" in st.session_state:
     result = st.session_state.generated_document
-    st.success(f"สร้างร่างบันทึกครบ {result['weeks']} สัปดาห์แล้ว กรุณาตรวจเนื้อหาและการแบ่งหน้าใน Word")
     with action_center:
+        st.markdown(
+            f'<div style="text-align:center;">สร้างร่างบันทึกครบ {result["weeks"]} สัปดาห์แล้ว กรุณาตรวจเนื้อหาและการแบ่งหน้าใน Word</div>',
+            unsafe_allow_html=True
+        )
         st.download_button(
             "ดาวน์โหลดบันทึก Word ↓",
             data=result["content"],
