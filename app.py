@@ -3,7 +3,10 @@ import os
 import json
 import io
 import time
-from reflection_core import source_part, parse_holidays, validate_weeks, lesson_date, render_document
+from reflection_core import (
+    source_part, parse_holidays, validate_weeks, lesson_date,
+    format_topic_for_form, render_document,
+)
 from docxtpl import DocxTemplate
 from google import genai
 from google.genai import types
@@ -324,7 +327,7 @@ if generate_clicked:
         ข้อมูลวันหยุด/งดสอน: {holiday_text}
 
         เกณฑ์การเขียนเชิงวิชาการที่เข้มข้น สมบูรณ์ และมีมิติ (ความยาวพอเหมาะ ไม่สั้นเกินไปและไม่ล้นหน้า):
-        1. topic: ระบุชื่อหน่วยการเรียนรู้ และสมรรถนะประจำหน่วย/หัวข้อการเรียนรู้อย่างชัดเจน
+        1. topic: ระบุชื่อหน่วยการเรียนรู้และหัวข้อการเรียนรู้แบบกระชับ ไม่เกิน 3 บรรทัด
         2. student_eval: ประเมินผลการเรียนรู้ของผู้เรียนอย่างเป็นรูปธรรม แยกมิติ K-P-A:
            - ด้านความรู้ (K): ผู้เรียนมีความรู้ความเข้าใจในเนื้อหาผ่านเกณฑ์การประเมิน
            - ด้านทักษะ/กระบวนการ (P): ผู้เรียนสามารถฝึกปฏิบัติงาน/ใบงานได้ถูกต้องตามขั้นตอน
@@ -441,7 +444,7 @@ if generate_clicked:
                 "date_display": date_display,
                 "time": time_display,
                 "time_display": time_display,
-                "topic": w.get("topic"),
+                "topic": format_topic_for_form(w.get("topic")),
                 "level": class_level,
                 "department": department,
                 "check_on": "☑" if not is_hol else "☐",

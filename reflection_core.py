@@ -1,5 +1,6 @@
 """Input validation and document assembly for the reflection website."""
 import io
+import textwrap
 from datetime import timedelta
 from pathlib import Path
 
@@ -73,6 +74,25 @@ def validate_weeks(data, count, holidays):
 def lesson_date(start, week, weekday):
     # The chosen start date is the first day of the first seven-day teaching cycle.
     return start + timedelta(weeks=week - 1, days=(weekday - start.weekday()) % 7)
+
+
+def format_topic_for_form(topic, line_width=30, max_lines=3):
+    """Keep the topic compact enough for the three-line topic field."""
+    if not isinstance(topic, str):
+        return topic
+    lines = []
+    for paragraph in topic.splitlines() or [""]:
+        lines.extend(textwrap.wrap(
+            paragraph.strip(),
+            width=line_width,
+            break_long_words=True,
+            break_on_hyphens=False,
+        ) or [""])
+    was_truncated = len(lines) > max_lines
+    lines = lines[:max_lines]
+    if was_truncated:
+        lines[-1] = lines[-1].rstrip(" .") + "..."
+    return "\n".join(lines)
 
 
 def render_document(template, contexts):

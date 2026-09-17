@@ -4,7 +4,10 @@ from datetime import date
 
 import docx
 from streamlit.testing.v1 import AppTest
-from reflection_core import lesson_date, parse_holidays, validate_weeks, render_document, source_part
+from reflection_core import (
+    lesson_date, parse_holidays, validate_weeks, render_document,
+    source_part, format_topic_for_form,
+)
 
 
 class ReflectionTests(unittest.TestCase):
@@ -34,6 +37,12 @@ class ReflectionTests(unittest.TestCase):
         self.assertIn('ครู A & B <C> / สัปดาห์ 1', text)
         self.assertIn('ครู A & B <C> / สัปดาห์ 2', text)
         self.assertIn('สัปดาห์ 2', source_part('course.docx', output).text)
+
+    def test_topic_is_limited_to_three_lines(self):
+        topic = "หน่วยการเรียนรู้ ระบบเครือข่ายคอมพิวเตอร์และการติดตั้งอุปกรณ์สำหรับงานจริงในสถานศึกษา พร้อมการบำรุงรักษาและการแก้ไขปัญหาเชิงระบบ"
+        formatted = format_topic_for_form(topic)
+        self.assertLessEqual(len(formatted.splitlines()), 3)
+        self.assertTrue(formatted.endswith("..."))
 
     def test_interface_auth_levels_and_validation(self):
         app = AppTest.from_file('app.py').run(timeout=20)
