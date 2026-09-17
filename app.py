@@ -67,6 +67,17 @@ h2, h3 {color:var(--ink) !important; font-size:1.08rem !important; line-height:1
 [data-testid="stMetricLabel"] {color:var(--muted);}
 [data-testid="stMetricValue"] {color:var(--ink); font-size:1.35rem;}
 [data-testid="stAlert"] {border-radius:8px;}
+.api-loading {position:fixed; right:24px; bottom:24px; z-index:9999; display:flex; align-items:center; gap:10px;
+    padding:10px 14px; background:#ffffff; color:var(--ink); border:1px solid var(--line); border-radius:10px;
+    box-shadow:0 8px 24px rgba(24,50,74,.16); font-size:13px; font-weight:600;}
+.api-loading-icon {width:18px; height:18px; border:3px solid #c9e9e5; border-top-color:var(--teal);
+    border-radius:50%; animation:api-spin .8s linear infinite;}
+.api-loading-dots {display:inline-flex; gap:3px; margin-left:-5px;}
+.api-loading-dots span {width:3px; height:3px; background:var(--teal); border-radius:50%; animation:api-pulse 1s infinite ease-in-out;}
+.api-loading-dots span:nth-child(2) {animation-delay:.15s;}
+.api-loading-dots span:nth-child(3) {animation-delay:.3s;}
+@keyframes api-spin {to {transform:rotate(360deg);}}
+@keyframes api-pulse {0%, 80%, 100% {opacity:.25; transform:translateY(0);} 40% {opacity:1; transform:translateY(-2px);}}
 @media(max-width:640px) {.block-container {padding:1rem .8rem 2rem;} .main-header {padding:1.5rem 1.25rem;} .main-header h1 {font-size:1.5rem;} .main-header p {font-size:14px;} }
 </style>
 """, unsafe_allow_html=True)
@@ -278,6 +289,14 @@ if st.button(f"สร้างร่างบันทึก {target_weeks} ส�
 
     progress_bar = st.progress(0)
     status_text = st.empty()
+    loading_popup = st.empty()
+    loading_popup.markdown("""
+    <div class="api-loading" role="status" aria-label="กำลังประมวลผล">
+        <span class="api-loading-icon"></span>
+        <span>กำลังประมวลผล</span>
+        <span class="api-loading-dots"><span></span><span></span><span></span></span>
+    </div>
+    """, unsafe_allow_html=True)
 
     try:
         status_text.text("🤖 กำลังส่งข้อมูลให้ Gemini AI วิเคราะห์โครงการสอนตามหลักวิชาการอาชีวศึกษา...")
@@ -435,9 +454,11 @@ if st.button(f"สร้างร่างบันทึก {target_weeks} ส�
         }
         progress_bar.progress(100)
         status_text.empty()
+        loading_popup.empty()
 
     except Exception as e:
         status_text.empty()
+        loading_popup.empty()
         st.error(f"สร้างเอกสารไม่สำเร็จ: {str(e).replace(api_key, '[hidden]')}")
 
 if "generated_document" in st.session_state:
