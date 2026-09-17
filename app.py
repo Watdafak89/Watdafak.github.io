@@ -73,6 +73,7 @@ h2, h3 {color:var(--ink) !important; font-size:1.08rem !important; line-height:1
 [data-testid="stMetricValue"] {color:var(--ink); font-size:1.35rem;}
 [data-testid="stAlert"] {border-radius:8px;}
 .api-panel h3 {margin:0 0 .35rem !important;}
+.top-panel-title {text-align:center; color:var(--ink); font-size:1.08rem; font-weight:700; line-height:1.6; margin-bottom:.35rem;}
 .api-panel-caption {color:var(--muted); font-size:12px; line-height:1.7; margin-bottom:.5rem;}
 .workflow-strip {height:100%; padding:1.1rem 1.25rem; background:#eaf5f4; border:1px solid #cce5e2; border-radius:10px;}
 .workflow-strip strong {display:block; color:var(--teal-dark); font-size:14px; margin-bottom:.35rem;}
@@ -148,12 +149,12 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-top_api, top_workflow = st.columns([1.15, 1.85], gap="large")
+top_api, top_workflow = st.columns(2, gap="large")
 with top_api:
     with st.container(border=True):
         st.markdown('<div class="api-panel">', unsafe_allow_html=True)
-        st.subheader("🔑 Gemini API Key")
-        st.markdown('<div class="api-panel-caption">ใส่ API Key แล้วกด ตกลง ก่อนสร้างเอกสาร</div>', unsafe_allow_html=True)
+        st.markdown('<div class="top-panel-title">🔑 Gemini API Key</div>', unsafe_allow_html=True)
+        st.markdown('<div class="api-panel-caption" style="text-align:center;">ใส่ API Key แล้วกด ตกลง ก่อนสร้างเอกสาร</div>', unsafe_allow_html=True)
         api_key_input = st.text_input(
             "API Key", type="password", placeholder="วาง API Key ของคุณ",
             label_visibility="collapsed", key="gemini_api_key"
@@ -166,7 +167,7 @@ with top_api:
 with top_workflow:
     with st.container(border=True):
         st.markdown('<div class="api-panel">', unsafe_allow_html=True)
-        st.subheader("👤 ข้อมูลครูผู้สอน")
+        st.markdown('<div class="top-panel-title">👤 ข้อมูลครูผู้สอน</div>', unsafe_allow_html=True)
         teacher_name = st.text_input("ชื่อ-สกุลครูผู้สอน:", value=DEFAULT_TEACHER_NAME)
         dept_choice = st.selectbox(
             "สาขาวิชา / แผนกวิชา:",
