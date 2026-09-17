@@ -266,7 +266,7 @@ def format_thai_date(dt):
     return f"{day_name} {d} {m} {y}"
 
 action_left, action_right = st.columns(2, gap="large")
-with action_right:
+with action_left:
     st.caption("AI ช่วยจัดทำร่างจากโครงการสอน กรุณาตรวจสอบและเติมผลที่เกิดขึ้นจริงก่อนนำเอกสารไปใช้")
     generate_clicked = st.button(
         f"สร้างร่างบันทึก {target_weeks} สัปดาห์ →",
