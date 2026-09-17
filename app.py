@@ -54,6 +54,8 @@ h2, h3 {color:var(--ink) !important; font-size:1.08rem !important; line-height:1
 [data-testid="stFileUploaderDropzone"] {background:#f8fbfb; border:1px dashed #b8d8d7; border-radius:8px;}
 [data-testid="stTextInput"] input, [data-testid="stTextArea"] textarea {font-size:15px; border-color:#cbd9df; border-radius:8px; background:#fff;}
 [data-testid="stTextInput"] input:focus, [data-testid="stTextArea"] textarea:focus {border-color:var(--teal); box-shadow:0 0 0 1px var(--teal);}
+[data-testid="stTextInput"]:has(input[aria-label="กรอกรหัสเข้าใช้งาน :"]) label {font-size:17px !important; font-weight:600;}
+[data-testid="stTextInput"]:has(input[aria-label="กรอกรหัสเข้าใช้งาน :"]) input {font-size:18px !important; min-height:48px;}
 [data-testid="stSelectbox"] div[data-baseweb="select"] > div {border-color:#cbd9df; border-radius:8px;}
 .stButton > button[kind="primary"], .stDownloadButton > button {background:var(--teal); color:white; border:0; min-height:46px; border-radius:8px; font-weight:600; box-shadow:0 5px 12px rgba(8,127,140,.16);}
 .stButton > button {min-height:42px; border-radius:8px; border-color:#cbd9df; color:var(--ink); font-weight:500;}
