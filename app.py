@@ -265,9 +265,9 @@ def format_thai_date(dt):
     day_name = DAY_NAMES[dt.weekday()]
     return f"{day_name} {d} {m} {y}"
 
-action_left, action_right = st.columns(2, gap="large")
-with action_left:
-    st.caption("AI ช่วยจัดทำร่างจากโครงการสอน กรุณาตรวจสอบและเติมผลที่เกิดขึ้นจริงก่อนนำเอกสารไปใช้")
+action_left, action_center, action_right = st.columns([1, 2, 1])
+with action_center:
+    st.markdown('<div style="text-align:center;">AI ช่วยจัดทำร่างจากโครงการสอน กรุณาตรวจสอบและเติมผลที่เกิดขึ้นจริงก่อนนำเอกสารไปใช้</div>', unsafe_allow_html=True)
     generate_clicked = st.button(
         f"สร้างร่างบันทึก {target_weeks} สัปดาห์ →",
         use_container_width=True,
