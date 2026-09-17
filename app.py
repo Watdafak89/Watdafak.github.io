@@ -34,7 +34,10 @@ st.markdown("""
 html, body, [data-testid="stAppViewContainer"], input, button, textarea, label, h1, h2, h3, p {
     font-family: 'Noto Sans Thai', sans-serif !important;
 }
-body, [data-testid="stAppViewContainer"] {background:var(--canvas); color:var(--ink);}
+body, [data-testid="stAppViewContainer"] {background-color:var(--canvas); color:var(--ink);
+    background-image:linear-gradient(rgba(8,127,140,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(8,127,140,.035) 1px, transparent 1px);
+    background-size:36px 36px;}
 .block-container {max-width:1400px; padding-top:1.5rem; padding-bottom:2.5rem;}
 [data-testid="stHeader"] {background:transparent;}
 .main-header {background:#123f4b; color:white; padding:2.1rem 2.35rem; border-radius:12px;
