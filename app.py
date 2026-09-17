@@ -13,7 +13,7 @@ SYSTEM_PASSCODE = os.environ.get("SYSTEM_PASSCODE", "1234")
 
 st.set_page_config(
     page_title="ระบบบันทึกหลังการสอน อาชีวศึกษา",
-    page_icon="✨",
+    page_icon="🐣",
     layout="wide",
 )
 
