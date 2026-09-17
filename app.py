@@ -210,7 +210,7 @@ with col2:
             target_weeks = 15
 
     class_level = f"{degree} {year_num}"
-    st.info(f"😸 ระดับ: **{class_level}** | สาขา: **{department}** | กำหนดอัตโนมัติ: **{target_weeks} สัปดาห์**")
+    st.markdown(f"ระดับ: **{class_level}** | สาขา: **{department}** | กำหนดอัตโนมัติ: **{target_weeks} สัปดาห์**")
     st.markdown('<div class="section-heading">🗓️ ตารางสอน</div>', unsafe_allow_html=True)
     slots_count = st.selectbox(
         "จำนวนคาบสอนใน 1 สัปดาห์ (ฉีกคาบได้สูงสุด 4 คาบ):",
