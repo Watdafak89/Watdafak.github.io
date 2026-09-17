@@ -78,8 +78,8 @@ if not st.session_state.authenticated:
                 st.rerun()
             else:
                 st.error("❌ รหัสผ่านไม่ถูกต้อง กรุณาติดต่อเจ้าของระบบ")
-        
-        
+
+
         st.markdown("""
         <div class="footer-box" style="margin-top: 20px;">
             <div class="footer-badge">🛡️ PROPRIETARY SOFTWARE</div><br/>
@@ -117,7 +117,7 @@ st.markdown("""
 with st.sidebar:
     st.header("การตั้งค่า")
     st.markdown('<span class="badge-tag">● พร้อมใช้งาน</span>', unsafe_allow_html=True)
-    
+
     api_key_input = st.text_input("🔑 Gemini API Key:", type="password", placeholder="วาง API Key ของคุณ", key="gemini_api_key")
     st.markdown("[รับ Gemini API Key](https://aistudio.google.com/apikey)")
     st.caption("เมื่อกดสร้างร่าง ระบบจะส่งโครงการสอนให้ Google Gemini ประมวลผล")
@@ -125,7 +125,7 @@ with st.sidebar:
 
     st.subheader("👤 ข้อมูลครูผู้สอน")
     teacher_name = st.text_input("ชื่อ-สกุลครูผู้สอน:", value="นายณัฐวุฒิ หล้าปงสาย")
-    
+
     dept_choice = st.selectbox("สาขาวิชา / แผนกวิชา:", DEPARTMENT_OPTIONS, index=0)
     if dept_choice == "อื่นๆ (ระบุเอง)":
         department = st.text_input("ระบุสาขาวิชาของคุณ:", value="")
@@ -153,7 +153,7 @@ with col1:
     st.subheader("01  แบบฟอร์มและหลักสูตร")
     tpl_file = st.file_uploader("📄 แนบแบบฟอร์มวิทยาลัย (template.docx):", type=["docx"])
     uploaded_file = st.file_uploader("📚 แนบไฟล์โครงการสอน (PDF, Word, TXT, รูปภาพ):", type=["pdf", "docx", "txt", "png", "jpg", "jpeg"])
-    
+
     with st.expander("วิธีเตรียมแบบฟอร์ม Word"):
         st.write("แบบฟอร์มต้องมีช่องแทนค่า เช่น {{ teacher_name }}, {{ subject }}, {{ week }}, {{ date }}, {{ topic }}, {{ student_eval }}, {{ teacher_eval }} และ {{ problem_solution }}")
         st.caption("รองรับทั้ง {{ subject }} และ {{ w.subject }} หากไฟล์ Word เป็นแบบฟอร์มเปล่า ให้เพิ่มช่องแทนค่าก่อนอัปโหลด")
@@ -306,8 +306,8 @@ if st.button(f"สร้างร่างบันทึก {target_weeks} ส�
         """
 
         models_to_try = [
-            "gemini-2.5-flash",
-            "gemini-2.5-flash-lite"
+            "gemini-3.5-flash",
+            "gemini-3.5-flash-lite"
         ]
         response = None
         last_error = None
@@ -358,7 +358,7 @@ if st.button(f"สร้างร่างบันทึก {target_weeks} ส�
             status_text.text(f"📝 กำลังลงข้อมูลสัปดาห์ที่ {w.get('week')} ในแบบฟอร์มวิทยาลัย...")
 
             week_num = w.get("week", idx + 1)
-            
+
             date_lines = []
             time_lines = []
             seen_days = set()
@@ -416,9 +416,8 @@ if "generated_document" in st.session_state:
 # กล่องข้อมูลลิขสิทธิ์และผู้พัฒนาระบบด้านล่างสุด
 st.markdown("""
 <div class="footer-box">
-    <div class="footer-badge">🛡️ AI VOCATIONAL REFLECTION</div><br/>
-    <b>ระบบปัญญาประดิษฐ์สกัดและจัดทำบันทึกหลังการสอนอาชีวศึกษา (AI Vocational Reflection)</b><br/>
-    สงวนลิขสิทธิ์ พัฒนาโดย <b>นายณัฐวุฒิ หล้าปงสาย</b> ครูผู้ช่วย วิทยาลัยเทคนิคจันทบุรี<br/>
+
+    พัฒนาโดย <b>นายวัชรพงษ์  สุขแช่ม</b> ครู วิทยาลัยเทคนิคจันทบุรี<br/>
     <span style="font-size: 12px; color: #94A3B8;">ขับเคลื่อนด้วย Streamlit & Google Gemini AI Flash Engine</span>
 </div>
 """, unsafe_allow_html=True)
