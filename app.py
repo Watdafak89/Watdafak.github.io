@@ -95,7 +95,6 @@ if "authenticated" not in st.session_state:
 if not st.session_state.authenticated:
     st.markdown("""
     <div class="main-header">
-        <div class="eyebrow">VOCATIONAL TEACHING ASSISTANT</div>
         <h1>บันทึกหลังการสอน<br/>ผู้ช่วย AI สำหรับครูอาชีวศึกษา</h1>
         <p style="text-align:center;">ใช้ไปเถอะ จะอะไรเยอะแยะ</p>
     </div>
