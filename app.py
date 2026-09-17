@@ -361,7 +361,10 @@ if generate_clicked:
         last_error = None
 
         for target_m in models_to_try:
-            status_text.text(f"⏳⏳⏳กำลังประมวลผลด้วยโมเดล {target_m}...⏳⏳⏳")
+            status_text.markdown(
+                f'<div style="text-align:center;">⏳⏳⏳กำลังประมวลผลด้วยโมเดล {target_m}...⏳⏳⏳</div>',
+                unsafe_allow_html=True,
+            )
             try:
                 response = client.models.generate_content(
                     model=target_m,
