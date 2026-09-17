@@ -15,7 +15,6 @@ st.set_page_config(
     page_title="ระบบบันทึกหลังการสอน อาชีวศึกษา",
     page_icon="✨",
     layout="wide",
-    initial_sidebar_state="expanded"
 )
 
 # สไตล์หน้าจอหลัก
@@ -180,19 +179,6 @@ with top_workflow:
         else:
             department = dept_choice
         st.markdown('</div>', unsafe_allow_html=True)
-
-with st.sidebar:
-    st.header("การตั้งค่า")
-    st.markdown('<span class="badge-tag">● พร้อมใช้งาน</span>', unsafe_allow_html=True)
-
-    st.markdown("""
-    <div style="font-size: 12px; color: #94A3B8; text-align: center; margin-top: 25px; line-height: 1.6;">
-        <b>AI Vocational Reflection System</b><br/>
-        สงวนลิขสิทธิ์ พัฒนาโดย<br/>
-        <b>นายณัฐวุฒิ หล้าปงสาย</b><br/>
-        ครูผู้ช่วย วิทยาลัยเทคนิคจันทบุรี
-    </div>
-    """, unsafe_allow_html=True)
 
 col1, col2 = st.columns(2, gap="large")
 
