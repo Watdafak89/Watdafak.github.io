@@ -106,7 +106,7 @@ if not st.session_state.authenticated:
     st.markdown("""
     <div class="main-header login-header">
         <h1>บันทึกหลังการสอน<br/>ผู้ช่วย AI สำหรับครูอาชีวศึกษา</h1>
-        <p style="text-align:center;">อะไรลดภาระงานได้ก็ใช้ไปเถอะ</p>
+        <p style="text-align:center;">🤣🤣🤣🤣🤣🤣🤣</p>
     </div>
     """, unsafe_allow_html=True)
 
