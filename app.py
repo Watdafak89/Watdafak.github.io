@@ -67,6 +67,11 @@ h2, h3 {color:var(--ink) !important; font-size:1.08rem !important; line-height:1
 [data-testid="stMetricLabel"] {color:var(--muted);}
 [data-testid="stMetricValue"] {color:var(--ink); font-size:1.35rem;}
 [data-testid="stAlert"] {border-radius:8px;}
+.api-panel h3 {margin:0 0 .35rem !important;}
+.api-panel-caption {color:var(--muted); font-size:12px; line-height:1.7; margin-bottom:.5rem;}
+.workflow-strip {height:100%; padding:1.1rem 1.25rem; background:#eaf5f4; border:1px solid #cce5e2; border-radius:10px;}
+.workflow-strip strong {display:block; color:var(--teal-dark); font-size:14px; margin-bottom:.35rem;}
+.workflow-strip span {color:var(--muted); font-size:13px; line-height:1.8;}
 .api-loading {position:fixed; right:24px; bottom:24px; z-index:9999; display:flex; align-items:center; gap:10px;
     padding:10px 14px; background:#ffffff; color:var(--ink); border:1px solid var(--line); border-radius:10px;
     box-shadow:0 8px 24px rgba(24,50,74,.16); font-size:13px; font-weight:600;}
@@ -145,30 +150,40 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
+top_api, top_workflow = st.columns([1.15, 1.85], gap="large")
+with top_api:
+    with st.container(border=True):
+        st.markdown('<div class="api-panel">', unsafe_allow_html=True)
+        st.subheader("🔑 Gemini API Key")
+        st.markdown('<div class="api-panel-caption">ใส่ API Key แล้วกด ตกลง ก่อนสร้างเอกสาร</div>', unsafe_allow_html=True)
+        api_key_input = st.text_input(
+            "API Key", type="password", placeholder="วาง API Key ของคุณ",
+            label_visibility="collapsed", key="gemini_api_key"
+        )
+        if st.button("ตกลง", key="confirm_api_key", use_container_width=True):
+            st.session_state.confirmed_gemini_api_key = api_key_input.strip()
+            st.success("บันทึก API Key แล้ว")
+        st.markdown('<a href="https://aistudio.google.com/apikey" target="_blank">รับ Gemini API Key ↗</a></div>', unsafe_allow_html=True)
+
+with top_workflow:
+    with st.container(border=True):
+        st.markdown('<div class="api-panel">', unsafe_allow_html=True)
+        st.subheader("👤 ข้อมูลครูผู้สอน")
+        teacher_name = st.text_input("ชื่อ-สกุลครูผู้สอน:", value=DEFAULT_TEACHER_NAME)
+        dept_choice = st.selectbox(
+            "สาขาวิชา / แผนกวิชา:",
+            DEPARTMENT_OPTIONS,
+            index=DEPARTMENT_OPTIONS.index(DEFAULT_DEPARTMENT)
+        )
+        if dept_choice == "อื่นๆ (ระบุเอง)":
+            department = st.text_input("ระบุสาขาวิชาของคุณ:", value="")
+        else:
+            department = dept_choice
+        st.markdown('</div>', unsafe_allow_html=True)
+
 with st.sidebar:
     st.header("การตั้งค่า")
     st.markdown('<span class="badge-tag">● พร้อมใช้งาน</span>', unsafe_allow_html=True)
-
-    api_key_input = st.text_input("🔑 Gemini API Key:", type="password", placeholder="วาง API Key ของคุณ", key="gemini_api_key")
-    if st.button("ตกลง", key="confirm_api_key", use_container_width=True):
-        st.session_state.confirmed_gemini_api_key = api_key_input.strip()
-        st.success("บันทึก API Key แล้ว")
-    st.markdown("[รับ Gemini API Key](https://aistudio.google.com/apikey)")
-    st.caption("เมื่อกดสร้างร่าง ระบบจะส่งโครงการสอนให้ Google Gemini ประมวลผล")
-    st.divider()
-
-    st.subheader("👤 ข้อมูลครูผู้สอน")
-    teacher_name = st.text_input("ชื่อ-สกุลครูผู้สอน:", value=DEFAULT_TEACHER_NAME)
-
-    dept_choice = st.selectbox(
-        "สาขาวิชา / แผนกวิชา:",
-        DEPARTMENT_OPTIONS,
-        index=DEPARTMENT_OPTIONS.index(DEFAULT_DEPARTMENT)
-    )
-    if dept_choice == "อื่นๆ (ระบุเอง)":
-        department = st.text_input("ระบุสาขาวิชาของคุณ:", value="")
-    else:
-        department = dept_choice
 
     st.markdown("""
     <div style="font-size: 12px; color: #94A3B8; text-align: center; margin-top: 25px; line-height: 1.6;">
@@ -179,7 +194,6 @@ with st.sidebar:
     </div>
     """, unsafe_allow_html=True)
 
-st.caption("สร้างเอกสาร 3 ขั้นตอน  ·  01 แนบไฟล์  →  02 กำหนดตาราง  →  03 ดาวน์โหลด Word")
 col1, col2 = st.columns(2, gap="large")
 
 with col1:
