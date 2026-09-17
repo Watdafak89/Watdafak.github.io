@@ -190,7 +190,8 @@ with col1:
     with st.expander("วิธีเตรียมแบบฟอร์ม Word"):
         st.write("แบบฟอร์มต้องมีช่องแทนค่า เช่น {{ teacher_name }}, {{ subject }}, {{ week }}, {{ date }}, {{ topic }}, {{ student_eval }}, {{ teacher_eval }} และ {{ problem_solution }}")
         st.caption("รองรับทั้ง {{ subject }} และ {{ w.subject }} หากไฟล์ Word เป็นแบบฟอร์มเปล่า ให้เพิ่มช่องแทนค่าก่อนอัปโหลด")
-    st.markdown("---")
+
+with col2:
     st.markdown("🎯 **เลือกระดับชั้นและวุฒิการศึกษา:**")
     c_deg, c_yr = st.columns(2)
     with c_deg:
@@ -205,8 +206,6 @@ with col1:
 
     class_level = f"{degree} {year_num}"
     st.info(f"✨ ระดับ: **{class_level}** | สาขา: **{department}** | กำหนดอัตโนมัติ: **{target_weeks} สัปดาห์**")
-
-with col2:
     st.subheader("02  ตารางสอน")
     slots_count = st.selectbox(
         "จำนวนคาบสอนใน 1 สัปดาห์ (ฉีกคาบได้สูงสุด 4 คาบ):",
