@@ -186,6 +186,7 @@ with col2:
     default_days = [0, 1, 2, 3]
     time_options = [f"{hour:02d}.30" for hour in range(8, 18)]
     default_times = [("15.30", "16.30"), ("08.30", "10.30"), ("10.30", "12.30"), ("13.30", "15.30")]
+    total_hours = 0
 
     for i in range(slots_count):
         st.markdown(f"**📌 รายละเอียดคาบที่ {i+1}:**")
@@ -208,6 +209,12 @@ with col2:
             )
         t_val = f"{start_time}-{end_time} น."
         slots_info.append({"day": d_val, "time": t_val})
+        start_minutes = int(start_time[:2]) * 60 + int(start_time[3:])
+        end_minutes = int(end_time[:2]) * 60 + int(end_time[3:])
+        total_hours += (end_minutes - start_minutes) / 60
+        if total_hours >= slots_count:
+            slots_info.extend({"day": "", "time": ""} for _ in range(i + 1, slots_count))
+            break
 
     start_date = st.date_input("📅 วันที่เริ่มรอบสัปดาห์ที่ 1:")
 
@@ -363,6 +370,10 @@ if st.button(f"สร้างร่างบันทึก {target_weeks} ส�
             time_lines = []
             seen_days = set()
             for slot in slots_info:
+                if not slot["day"]:
+                    date_lines.append("")
+                    time_lines.append("")
+                    continue
                 t_wday = day_map.get(slot["day"], 0)
                 dt_slot = lesson_date(start_date, week_num, t_wday)
                 date_lines.append("" if slot["day"] in seen_days else format_thai_date(dt_slot))
@@ -379,8 +390,8 @@ if st.button(f"สร้างร่างบันทึก {target_weeks} ส�
                 "week": week_num,
                 "date": date_display,
                 "date_display": date_display,
-                "time": time_display,
-                "time_display": time_display,
+                "time": "",
+                "time_display": "",
                 "topic": w.get("topic"),
                 "level": class_level,
                 "department": department,
