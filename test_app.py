@@ -45,7 +45,7 @@ class ReflectionTests(unittest.TestCase):
         app.run()
         self.assertEqual(len(app.exception), 0)
         next(s for s in app.selectbox if s.label == 'ระดับคุณวุฒิ:').select('ปวส.').run()
-        self.assertTrue(any(m.value == '15 สัปดาห์' for m in app.metric))
+        self.assertEqual(len(app.metric), 0)
         next(b for b in app.button if 'สร้างร่าง' in b.label).click().run()
         self.assertEqual(len(app.warning), 1)
         self.assertEqual(len(app.exception), 0)

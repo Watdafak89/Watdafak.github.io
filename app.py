@@ -265,11 +265,6 @@ def format_thai_date(dt):
     day_name = DAY_NAMES[dt.weekday()]
     return f"{day_name} {d} {m} {y}"
 
-st.divider()
-summary = st.columns(3)
-summary[0].metric("ระดับชั้น", class_level)
-summary[1].metric("ระยะเวลา", f"{target_weeks} สัปดาห์")
-summary[2].metric("ตารางสอน", f"{slots_count} คาบ / สัปดาห์")
 st.caption("AI ช่วยจัดทำร่างจากโครงการสอน กรุณาตรวจสอบและเติมผลที่เกิดขึ้นจริงก่อนนำเอกสารไปใช้")
 if st.button(f"สร้างร่างบันทึก {target_weeks} สัปดาห์ →", use_container_width=True, type="primary"):
     st.session_state.pop("generated_document", None)
