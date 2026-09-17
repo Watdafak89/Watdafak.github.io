@@ -47,6 +47,7 @@ body, [data-testid="stAppViewContainer"] {background-color:var(--canvas); color:
     border:1px solid rgba(150,235,222,.28); transform:rotate(35deg); pointer-events:none;}
 .main-header h1 {color:white !important; font-size:clamp(1.55rem,2.4vw,2.25rem); line-height:1.45; font-weight:700; margin:0 0 .45rem; position:relative; z-index:1;}
 .login-header h1 {text-align:center;}
+.centered-header h1 {text-align:center;}
 .main-header p {color:#c9e9e5 !important; font-size:15px; line-height:1.8; margin:0; position:relative; z-index:1;}
 .eyebrow {color:#91e0d5; font-size:11px; letter-spacing:1.8px; font-weight:700; margin-bottom:.55rem;}
 h2, h3 {color:var(--ink) !important; font-size:1.08rem !important; line-height:1.6 !important; letter-spacing:0 !important;}
@@ -143,7 +144,7 @@ DEFAULT_TEACHER_NAME = "นายวัชรพงษ์ สุขแช่ม"
 DEFAULT_DEPARTMENT = "เทคโนโลยีสารสนเทศ"
 
 st.markdown("""
-<div class="main-header">
+<div class="main-header centered-header">
     <h1>จัดทำบันทึกหลังการสอน</h1>
     <p style="text-align:center;">แนบโครงการสอน กำหนดตารางเรียน แล้วสร้างร่างบันทึกในแบบฟอร์ม Word ของคุณ</p>
 </div>
