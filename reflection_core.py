@@ -1,6 +1,5 @@
 """Input validation and document assembly for the reflection website."""
 import io
-import textwrap
 from datetime import timedelta
 from pathlib import Path
 
@@ -9,6 +8,7 @@ from docxcompose.composer import Composer
 from docxtpl import DocxTemplate
 from google.genai import types
 from jinja2 import Environment, StrictUndefined
+from pythainlp.tokenize import word_tokenize
 
 
 def source_part(name, content):
@@ -82,12 +82,15 @@ def format_topic_for_form(topic, line_width=30, max_lines=3):
         return topic
     lines = []
     for paragraph in topic.splitlines() or [""]:
-        lines.extend(textwrap.wrap(
-            paragraph.strip(),
-            width=line_width,
-            break_long_words=True,
-            break_on_hyphens=False,
-        ) or [""])
+        current = ""
+        for token in word_tokenize(paragraph.strip(), engine="newmm", keep_whitespace=True):
+            candidate = current + token
+            if len(candidate) > line_width and current.strip():
+                lines.append(current.rstrip())
+                current = token.lstrip()
+            else:
+                current = candidate
+        lines.append(current.rstrip())
     was_truncated = len(lines) > max_lines
     lines = lines[:max_lines]
     if was_truncated:
