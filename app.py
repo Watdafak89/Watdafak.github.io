@@ -193,7 +193,7 @@ with col1:
         st.caption("รองรับทั้ง {{ subject }} และ {{ w.subject }} หากไฟล์ Word เป็นแบบฟอร์มเปล่า ให้เพิ่มช่องแทนค่าก่อนอัปโหลด")
 
 with col2:
-    st.markdown("🎯 **เลือกระดับชั้นและวุฒิการศึกษา:**")
+    st.markdown("😸 **เลือกระดับชั้นและวุฒิการศึกษา:**")
     c_deg, c_yr = st.columns(2)
     with c_deg:
         degree = st.selectbox("ระดับคุณวุฒิ:", ["ปวช.", "ปวส."])
@@ -206,7 +206,7 @@ with col2:
             target_weeks = 15
 
     class_level = f"{degree} {year_num}"
-    st.info(f"✨ ระดับ: **{class_level}** | สาขา: **{department}** | กำหนดอัตโนมัติ: **{target_weeks} สัปดาห์**")
+    st.info(f"😸 ระดับ: **{class_level}** | สาขา: **{department}** | กำหนดอัตโนมัติ: **{target_weeks} สัปดาห์**")
     st.subheader("ตารางสอน")
     slots_count = st.selectbox(
         "จำนวนคาบสอนใน 1 สัปดาห์ (ฉีกคาบได้สูงสุด 4 คาบ):",
@@ -222,7 +222,7 @@ with col2:
     total_hours = 0
 
     for i in range(slots_count):
-        st.markdown(f"**📌 รายละเอียด {i+1}:**")
+        st.markdown(f"**😸 รายละเอียด {i+1}:**")
         sc1, sc2, sc3 = st.columns(3)
         with sc1:
             d_val = st.selectbox(f"วัน (ค {i+1}):", DAY_NAMES, index=default_days[i % len(default_days)], key=f"day_slot_{i}")
