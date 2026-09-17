@@ -40,6 +40,7 @@ body, [data-testid="stAppViewContainer"] {background-color:var(--canvas); color:
     background-size:36px 36px;}
 .block-container {max-width:1400px; padding-top:1.5rem; padding-bottom:2.5rem;}
 [data-testid="stHeader"] {background:transparent;}
+[data-testid="stToolbar"] {visibility:hidden;}
 .main-header {background:#123f4b; color:white; padding:2.1rem 2.35rem; border-radius:12px;
     margin-bottom:1.8rem; border-left:6px solid #55c5bb; position:relative; overflow:hidden;
     box-shadow:0 12px 30px rgba(24,50,74,.10);}
