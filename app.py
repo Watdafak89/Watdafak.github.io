@@ -226,7 +226,7 @@ with col2:
     total_hours = 0
 
     for i in range(slots_count):
-        st.markdown(f"**😸 รายละเอียด {i+1}:**")
+        st.markdown(f"**💻 รายละเอียด {i+1}:**")
         sc1, sc2, sc3 = st.columns(3)
         with sc1:
             d_val = st.selectbox(f"วัน (ค {i+1}):", DAY_NAMES, index=default_days[i % len(default_days)], key=f"day_slot_{i}")
@@ -366,7 +366,7 @@ if generate_clicked:
 
         for target_m in models_to_try:
             status_text.markdown(
-                f'<div style="text-align:center;">⏳⏳⏳กำลังประมวลผลด้วยโมเดล {target_m}...⏳⏳⏳</div>',
+                f'<div style="text-align:center;">⏳⏳ กำลังประมวลผลด้วยโมเดล {target_m}... 🐱🐱🐱🐱🐱🐱🐱 </div>',
                 unsafe_allow_html=True,
             )
             try:
