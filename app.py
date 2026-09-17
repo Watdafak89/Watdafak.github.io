@@ -9,10 +9,10 @@ from google import genai
 from google.genai import types
 
 # กำหนดรหัสผ่านสำหรับปลดล็อกระบบ
-SYSTEM_PASSCODE = os.environ.get("SYSTEM_PASSCODE", "0863449483")
+SYSTEM_PASSCODE = os.environ.get("SYSTEM_PASSCODE", "1234")
 
 st.set_page_config(
-    page_title="ระบบบันทึกหลังการสอน AI อาชีวศึกษา",
+    page_title="ระบบบันทึกหลังการสอน อาชีวศึกษา",
     page_icon="✨",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -32,7 +32,7 @@ html, body, [data-testid="stAppViewContainer"], input, button, textarea, label, 
 .main-header:after {content:""; position:absolute; right:-40px; top:-100px; width:320px; height:320px;
     border:50px solid rgba(255,255,255,.035); border-radius:50%; pointer-events:none;}
 .main-header h1 {color:white !important; font-size:clamp(1.5rem,2.4vw,2.2rem); line-height:1.55; font-weight:700; margin:4px 0 10px;}
-.main-header p {color:#D3E2FF !important; font-size:16px; line-height:1.8; margin:0;}
+.main-header p {color:#D3E2FF !important; font-size:16px; line-height:1.8; margin:0; text-align:center;}
 .eyebrow {color:#8EB8FF; font-size:12px; letter-spacing:2px; font-weight:700; margin-bottom:8px;}
 h2, h3 {font-size:1.15rem !important; line-height:1.7 !important;}
 [data-testid="stSidebar"] {background:#fff; border-right:1px solid #E1E7F1;}
@@ -62,7 +62,7 @@ if not st.session_state.authenticated:
     <div class="main-header">
         <div class="eyebrow">VOCATIONAL TEACHING ASSISTANT</div>
         <h1>บันทึกหลังการสอน<br/>ผู้ช่วย AI สำหรับครูอาชีวศึกษา</h1>
-        <p>จากโครงการสอน สู่บันทึกรายสัปดาห์ในแบบฟอร์มของวิทยาลัย</p>
+        <p>ใช้ไปเถอะ จะอะไรเยอะแยะ</p>
     </div>
     """, unsafe_allow_html=True)
 
@@ -361,10 +361,12 @@ if st.button(f"สร้างร่างบันทึก {target_weeks} ส�
             
             date_lines = []
             time_lines = []
+            seen_days = set()
             for slot in slots_info:
                 t_wday = day_map.get(slot["day"], 0)
                 dt_slot = lesson_date(start_date, week_num, t_wday)
-                date_lines.append(format_thai_date(dt_slot))
+                date_lines.append("" if slot["day"] in seen_days else format_thai_date(dt_slot))
+                seen_days.add(slot["day"])
                 time_lines.append(f"เวลา {slot['time']}")
 
             date_display = "\n".join(date_lines)
