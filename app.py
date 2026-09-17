@@ -183,7 +183,7 @@ with top_workflow:
 col1, col2 = st.columns(2, gap="large")
 
 with col1:
-    st.subheader("01  แบบฟอร์มและหลักสูตร")
+    st.subheader("แบบฟอร์มและหลักสูตร")
     tpl_file = st.file_uploader("📄 แนบแบบฟอร์มวิทยาลัย (template.docx):", type=["docx"])
     uploaded_file = st.file_uploader("📚 แนบไฟล์โครงการสอน (PDF, Word, TXT, รูปภาพ):", type=["pdf", "docx", "txt", "png", "jpg", "jpeg"])
 
@@ -206,7 +206,7 @@ with col2:
 
     class_level = f"{degree} {year_num}"
     st.info(f"✨ ระดับ: **{class_level}** | สาขา: **{department}** | กำหนดอัตโนมัติ: **{target_weeks} สัปดาห์**")
-    st.subheader("02  ตารางสอน")
+    st.subheader("ตารางสอน")
     slots_count = st.selectbox(
         "จำนวนคาบสอนใน 1 สัปดาห์ (ฉีกคาบได้สูงสุด 4 คาบ):",
         options=[1, 2, 3, 4],
