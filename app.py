@@ -46,6 +46,7 @@ body, [data-testid="stAppViewContainer"] {background-color:var(--canvas); color:
 .main-header:after {content:""; position:absolute; right:-70px; top:-130px; width:300px; height:300px;
     border:1px solid rgba(150,235,222,.28); transform:rotate(35deg); pointer-events:none;}
 .main-header h1 {color:white !important; font-size:clamp(1.55rem,2.4vw,2.25rem); line-height:1.45; font-weight:700; margin:0 0 .45rem; position:relative; z-index:1;}
+.login-header h1 {font-size:clamp(1.86rem,2.88vw,2.7rem);}
 .login-header h1 {text-align:center;}
 .centered-header h1 {text-align:center;}
 .main-header p {color:#c9e9e5 !important; font-size:15px; line-height:1.8; margin:0; position:relative; z-index:1;}
@@ -59,8 +60,8 @@ h2, h3 {color:var(--ink) !important; font-size:1.08rem !important; line-height:1
 [data-testid="stFileUploaderDropzone"] {background:#f8fbfb; border:1px dashed #b8d8d7; border-radius:8px;}
 [data-testid="stTextInput"] input, [data-testid="stTextArea"] textarea {font-size:15px; border-color:#cbd9df; border-radius:8px; background:#fff;}
 [data-testid="stTextInput"] input:focus, [data-testid="stTextArea"] textarea:focus {border-color:var(--teal); box-shadow:0 0 0 1px var(--teal);}
-[data-testid="stTextInput"]:has(input[aria-label="กรอกรหัสเข้าใช้งาน :"]) label {font-size:17px !important; font-weight:600;}
-[data-testid="stTextInput"]:has(input[aria-label="กรอกรหัสเข้าใช้งาน :"]) input {font-size:18px !important; min-height:48px;}
+[data-testid="stTextInput"]:has(input[aria-label="กรอกรหัสเข้าใช้งาน :"]) label {font-size:20.4px !important; font-weight:600;}
+[data-testid="stTextInput"]:has(input[aria-label="กรอกรหัสเข้าใช้งาน :"]) input {font-size:21.6px !important; min-height:48px;}
 [data-testid="stSelectbox"] div[data-baseweb="select"] > div {border-color:#cbd9df; border-radius:8px;}
 .stButton > button[kind="primary"], .stDownloadButton > button {background:var(--teal); color:white; border:0; min-height:46px; border-radius:8px; font-weight:600; box-shadow:0 5px 12px rgba(8,127,140,.16);}
 .stButton > button {min-height:42px; border-radius:8px; border-color:#cbd9df; color:var(--ink); font-weight:500;}
@@ -94,7 +95,7 @@ h2, h3 {color:var(--ink) !important; font-size:1.08rem !important; line-height:1
 .api-loading-dots span:nth-child(3) {animation-delay:.3s;}
 @keyframes api-spin {to {transform:rotate(360deg);}}
 @keyframes api-pulse {0%, 80%, 100% {opacity:.25; transform:translateY(0);} 40% {opacity:1; transform:translateY(-2px);}}
-@media(max-width:640px) {.block-container {padding:1rem .8rem 2rem;} .main-header {padding:1.5rem 1.25rem;} .main-header h1 {font-size:1.5rem;} .main-header p {font-size:14px;} }
+@media(max-width:640px) {.block-container {padding:1rem .8rem 2rem;} .main-header {padding:1.5rem 1.25rem;} .main-header h1 {font-size:1.5rem;} .login-header h1 {font-size:1.8rem;} .main-header p {font-size:14px;} }
 </style>
 """, unsafe_allow_html=True)
 
