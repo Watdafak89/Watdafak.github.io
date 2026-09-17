@@ -467,8 +467,14 @@ if generate_clicked:
 if "generated_document" in st.session_state:
     result = st.session_state.generated_document
     st.success(f"สร้างร่างบันทึกครบ {result['weeks']} สัปดาห์แล้ว กรุณาตรวจเนื้อหาและการแบ่งหน้าใน Word")
-    st.download_button("ดาวน์โหลดบันทึก Word ↓", data=result["content"], file_name=result["name"],
-                       mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document", use_container_width=True)
+    with action_center:
+        st.download_button(
+            "ดาวน์โหลดบันทึก Word ↓",
+            data=result["content"],
+            file_name=result["name"],
+            mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+            use_container_width=True
+        )
 
 # กล่องข้อมูลลิขสิทธิ์และผู้พัฒนาระบบด้านล่างสุด
 st.markdown("""
