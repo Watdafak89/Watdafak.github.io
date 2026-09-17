@@ -145,7 +145,7 @@ DEFAULT_DEPARTMENT = "เทคโนโลยีสารสนเทศ"
 st.markdown("""
 <div class="main-header">
     <h1>จัดทำบันทึกหลังการสอน</h1>
-    <p>แนบโครงการสอน กำหนดตารางเรียน แล้วสร้างร่างบันทึกในแบบฟอร์ม Word ของคุณ</p>
+    <p style="text-align:center;">แนบโครงการสอน กำหนดตารางเรียน แล้วสร้างร่างบันทึกในแบบฟอร์ม Word ของคุณ</p>
 </div>
 """, unsafe_allow_html=True)
 
