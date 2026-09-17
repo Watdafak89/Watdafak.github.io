@@ -75,6 +75,10 @@ h2, h3 {color:var(--ink) !important; font-size:1.08rem !important; line-height:1
 [data-testid="stAlert"] {border-radius:8px;}
 .api-panel h3 {margin:0 0 .35rem !important;}
 .top-panel-title {text-align:center; color:var(--ink); font-size:1.08rem; font-weight:700; line-height:1.6; margin-bottom:.35rem;}
+.section-heading {display:flex; align-items:center; gap:.55rem; margin:0 0 1rem; padding:.65rem .85rem;
+    background:linear-gradient(90deg, #e5f4f3 0%, rgba(229,244,243,.28) 72%, transparent 100%);
+    border-left:4px solid var(--teal); border-bottom:1px solid #cce5e2; border-radius:0 6px 6px 0;
+    color:var(--teal-dark); font-size:1.08rem; font-weight:700; line-height:1.6;}
 .api-panel-caption {color:var(--muted); font-size:12px; line-height:1.7; margin-bottom:.5rem;}
 .workflow-strip {height:100%; padding:1.1rem 1.25rem; background:#eaf5f4; border:1px solid #cce5e2; border-radius:10px;}
 .workflow-strip strong {display:block; color:var(--teal-dark); font-size:14px; margin-bottom:.35rem;}
@@ -184,7 +188,7 @@ with top_workflow:
 col1, col2 = st.columns(2, gap="large")
 
 with col1:
-    st.subheader("แบบฟอร์มและหลักสูตร")
+    st.markdown('<div class="section-heading">📚 แบบฟอร์มและหลักสูตร</div>', unsafe_allow_html=True)
     tpl_file = st.file_uploader("📄 แนบแบบฟอร์มวิทยาลัย (template.docx):", type=["docx"])
     uploaded_file = st.file_uploader("📚 แนบไฟล์โครงการสอน (PDF, Word, TXT, รูปภาพ):", type=["pdf", "docx", "txt", "png", "jpg", "jpeg"])
 
@@ -193,7 +197,7 @@ with col1:
         st.caption("รองรับทั้ง {{ subject }} และ {{ w.subject }} หากไฟล์ Word เป็นแบบฟอร์มเปล่า ให้เพิ่มช่องแทนค่าก่อนอัปโหลด")
 
 with col2:
-    st.markdown("😸 **เลือกระดับชั้นและวุฒิการศึกษา:**")
+    st.markdown('<div class="section-heading">😸 เลือกระดับชั้นและวุฒิการศึกษา</div>', unsafe_allow_html=True)
     c_deg, c_yr = st.columns(2)
     with c_deg:
         degree = st.selectbox("ระดับคุณวุฒิ:", ["ปวช.", "ปวส."])
@@ -207,7 +211,7 @@ with col2:
 
     class_level = f"{degree} {year_num}"
     st.info(f"😸 ระดับ: **{class_level}** | สาขา: **{department}** | กำหนดอัตโนมัติ: **{target_weeks} สัปดาห์**")
-    st.subheader("ตารางสอน")
+    st.markdown('<div class="section-heading">🗓️ ตารางสอน</div>', unsafe_allow_html=True)
     slots_count = st.selectbox(
         "จำนวนคาบสอนใน 1 สัปดาห์ (ฉีกคาบได้สูงสุด 4 คาบ):",
         options=[1, 2, 3, 4],
