@@ -124,6 +124,8 @@ DEPARTMENT_OPTIONS = [
     "ช่างก่อสร้าง",
     "อื่นๆ (ระบุเอง)"
 ]
+DEFAULT_TEACHER_NAME = "นายวัชรพงษ์ สุขแช่ม"
+DEFAULT_DEPARTMENT = "เทคโนโลยีสารสนเทศ"
 
 st.markdown("""
 <div class="main-header">
@@ -145,9 +147,13 @@ with st.sidebar:
     st.divider()
 
     st.subheader("👤 ข้อมูลครูผู้สอน")
-    teacher_name = st.text_input("ชื่อ-สกุลครูผู้สอน:", value="นายณัฐวุฒิ หล้าปงสาย")
+    teacher_name = st.text_input("ชื่อ-สกุลครูผู้สอน:", value=DEFAULT_TEACHER_NAME)
 
-    dept_choice = st.selectbox("สาขาวิชา / แผนกวิชา:", DEPARTMENT_OPTIONS, index=0)
+    dept_choice = st.selectbox(
+        "สาขาวิชา / แผนกวิชา:",
+        DEPARTMENT_OPTIONS,
+        index=DEPARTMENT_OPTIONS.index(DEFAULT_DEPARTMENT)
+    )
     if dept_choice == "อื่นๆ (ระบุเอง)":
         department = st.text_input("ระบุสาขาวิชาของคุณ:", value="")
     else:
