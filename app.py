@@ -127,7 +127,7 @@ if not st.session_state.authenticated:
         st.markdown("""
         <div class="footer-box" style="margin-top: 20px;">
             <div class="footer-badge">🛡️ PROPRIETARY SOFTWARE</div><br/>
-            สงวนลิขสิทธิ์ พัฒนาโดย <b>นายวัชรพงษ์ สุขแช่ม</b> ครู วิทยาลัยเทคนิคจันทบุรี
+             พัฒนาโดย <b>นายวัชรพงษ์ สุขแช่ม</b> ครู วิทยาลัยเทคนิคจันทบุรี
         </div>
         """, unsafe_allow_html=True)
     st.stop()
