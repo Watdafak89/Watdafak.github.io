@@ -9,6 +9,8 @@ from docxtpl import DocxTemplate
 from google.genai import types
 from jinja2 import Environment, StrictUndefined
 from pythainlp.tokenize import word_tokenize
+from docx.enum.table import WD_CELL_VERTICAL_ALIGNMENT
+from docx.enum.text import WD_ALIGN_PARAGRAPH
 
 
 def source_part(name, content):
@@ -76,8 +78,8 @@ def lesson_date(start, week, weekday):
     return start + timedelta(weeks=week - 1, days=(weekday - start.weekday()) % 7)
 
 
-def format_topic_for_form(topic, line_width=30, max_lines=3):
-    """Keep the topic compact enough for the three-line topic field."""
+def format_topic_for_form(topic, line_width=30, max_lines=4):
+    """Keep the topic compact enough for the four-line topic field."""
     if not isinstance(topic, str):
         return topic
     lines = []
@@ -98,6 +100,24 @@ def format_topic_for_form(topic, line_width=30, max_lines=3):
     return "\n".join(lines)
 
 
+def _center_date_time_cells(document, context):
+    values = {
+        str(context.get("date", "")).strip(),
+        str(context.get("date_display", "")).strip(),
+        str(context.get("time", "")).strip(),
+        str(context.get("time_display", "")).strip(),
+    }
+    values.discard("")
+    for table in document.tables:
+        for row in table.rows:
+            for cell in row.cells:
+                if cell.text.strip() not in values:
+                    continue
+                cell.vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.CENTER
+                for paragraph in cell.paragraphs:
+                    paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
+
+
 def render_document(template, contexts):
     composer = None
     for context in contexts:
@@ -107,6 +127,7 @@ def render_document(template, contexts):
         tpl.save(buffer)
         buffer.seek(0)
         document = docx.Document(buffer)
+        _center_date_time_cells(document, context)
         if composer is None:
             composer = Composer(document)
         else:
