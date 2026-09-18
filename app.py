@@ -200,10 +200,6 @@ with col1:
     tpl_file = st.file_uploader("📄 แนบแบบฟอร์มวิทยาลัย (template.docx):", type=["docx"])
     uploaded_file = st.file_uploader("📚 แนบไฟล์โครงการสอน (PDF, Word, TXT, รูปภาพ):", type=["pdf", "docx", "txt", "png", "jpg", "jpeg"])
 
-    with st.expander("วิธีเตรียมแบบฟอร์ม Word"):
-        st.write("แบบฟอร์มต้องมีช่องแทนค่า เช่น {{ teacher_name }}, {{ subject }}, {{ week }}, {{ date }}, {{ topic }}, {{ student_eval }}, {{ teacher_eval }} และ {{ problem_solution }}")
-        st.caption("รองรับทั้ง {{ subject }} และ {{ w.subject }} หากไฟล์ Word เป็นแบบฟอร์มเปล่า ให้เพิ่มช่องแทนค่าก่อนอัปโหลด")
-
 with col2:
     st.markdown('<div class="section-heading">เลือกระดับชั้น</div>', unsafe_allow_html=True)
     c_deg, c_yr = st.columns(2)
@@ -328,7 +324,7 @@ if generate_clicked:
         attachment = source_part(uploaded_file.name, uploaded_file.getvalue())
         template_check = DocxTemplate(io.BytesIO(tpl_file.getvalue()))
         if not template_check.get_undeclared_template_variables():
-            raise ValueError("ไม่พบช่องแทนค่าในแบบฟอร์ม Word ดูตัวอย่างได้ที่ วิธีเตรียมแบบฟอร์ม Word")
+            raise ValueError("ไม่พบช่องแทนค่าในแบบฟอร์ม Word กรุณาตรวจสอบ template.docx")
 
         prompt = f"""
          คุณคือผู้เชี่ยวชาญด้านหลักสูตรและการจัดการเรียนรู้อาชีวศึกษา (สอศ.)
