@@ -201,7 +201,7 @@ with col1:
         st.caption("รองรับทั้ง {{ subject }} และ {{ w.subject }} หากไฟล์ Word เป็นแบบฟอร์มเปล่า ให้เพิ่มช่องแทนค่าก่อนอัปโหลด")
 
 with col2:
-    st.markdown('<div class="section-heading">😸 เลือกระดับชั้น</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-heading">เลือกระดับชั้น</div>', unsafe_allow_html=True)
     c_deg, c_yr = st.columns(2)
     with c_deg:
         degree = st.selectbox("ระดับ:", ["ปวช.", "ปวส."])
