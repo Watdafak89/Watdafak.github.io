@@ -277,7 +277,7 @@ def format_thai_date(dt):
 
 action_left, action_center, action_right = st.columns([1, 2, 1])
 with action_center:
-    st.markdown('<div style="text-align:center;">AI ช่วยจัดทำร่างจากโครงการสอน กรุณาตรวจสอบและเติมผลที่เกิดขึ้นจริงก่อนนำเอกสารไปใช้</div>', unsafe_allow_html=True)
+    st.markdown('<div style="text-align:center;">AI ช่วยจัดทำร่างจากโครงการสอน</div>', unsafe_allow_html=True)
     generate_clicked = st.button(
         f"สร้างร่างบันทึก {target_weeks} สัปดาห์ →",
         use_container_width=True,
