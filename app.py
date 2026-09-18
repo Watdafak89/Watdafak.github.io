@@ -192,7 +192,7 @@ with top_workflow:
 col1, col2 = st.columns(2, gap="large")
 
 with col1:
-    st.markdown('<div class="section-heading">📚 แบบฟอร์มและหลักสูตร</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-heading">📚 แบบฟอร์มและโครงการสอน</div>', unsafe_allow_html=True)
     tpl_file = st.file_uploader("📄 แนบแบบฟอร์มวิทยาลัย (template.docx):", type=["docx"])
     uploaded_file = st.file_uploader("📚 แนบไฟล์โครงการสอน (PDF, Word, TXT, รูปภาพ):", type=["pdf", "docx", "txt", "png", "jpg", "jpeg"])
 
