@@ -219,7 +219,7 @@ with col2:
     slots_count = st.selectbox(
         "จำนวนคาบสอนใน 1 สัปดาห์ :",
         options=[1, 2, 3, 4],
-        format_func=lambda x: f"สอน {x} คาบ / สัปดาห์" if x > 1 else "สอน 1 วันต่อสัปดาห์",
+        format_func=lambda x: f"สอน {x} คาบ / สัปดาห์" if x > 1 else "สอน 1 วัน ต่อสัปดาห์",
         index=2
     )
 
