@@ -154,7 +154,7 @@ DEFAULT_DEPARTMENT = "เทคโนโลยีสารสนเทศ"
 st.markdown("""
 <div class="main-header centered-header">
     <h1>จัดทำบันทึกหลังการสอน</h1>
-    <p style="text-align:center;">แนบโครงการสอน กำหนดตารางเรียน แล้วสร้างร่างบันทึกในแบบฟอร์ม Word ของคุณ</p>
+    <p style="text-align:center;">แนบโครงการสอน กำหนดตารางเรียน แล้วสร้างร่างบันทึกในแบบฟอร์ม Word </p>
 </div>
 """, unsafe_allow_html=True)
 
@@ -201,10 +201,10 @@ with col1:
         st.caption("รองรับทั้ง {{ subject }} และ {{ w.subject }} หากไฟล์ Word เป็นแบบฟอร์มเปล่า ให้เพิ่มช่องแทนค่าก่อนอัปโหลด")
 
 with col2:
-    st.markdown('<div class="section-heading">😸 เลือกระดับชั้นและวุฒิการศึกษา</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-heading">😸 เลือกระดับชั้น</div>', unsafe_allow_html=True)
     c_deg, c_yr = st.columns(2)
     with c_deg:
-        degree = st.selectbox("ระดับคุณวุฒิ:", ["ปวช.", "ปวส."])
+        degree = st.selectbox("ระดับ:", ["ปวช.", "ปวส."])
     with c_yr:
         if degree == "ปวช.":
             year_num = st.selectbox("ชั้นปี:", ["1", "2", "3"])
@@ -217,9 +217,9 @@ with col2:
     st.markdown(f"ระดับ: **{class_level}** | สาขา: **{department}** | กำหนดอัตโนมัติ: **{target_weeks} สัปดาห์**")
     st.markdown('<div class="section-heading">🗓️ ตารางสอน</div>', unsafe_allow_html=True)
     slots_count = st.selectbox(
-        "จำนวนคาบสอนใน 1 สัปดาห์ (ฉีกคาบได้สูงสุด 4 คาบ):",
+        "จำนวนคาบสอนใน 1 สัปดาห์ :",
         options=[1, 2, 3, 4],
-        format_func=lambda x: f"สอน {x} คาบ / สัปดาห์" if x > 1 else "สอน 1 คาบ (วันเดียวจบ)",
+        format_func=lambda x: f"สอน {x} คาบ / สัปดาห์" if x > 1 else "สอน 1 วันต่อสัปดาห์",
         index=2
     )
 
