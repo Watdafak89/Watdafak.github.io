@@ -81,7 +81,7 @@ def lesson_date(start, week, weekday):
 
 
 def format_topic_for_form(topic, line_width=30, max_lines=4):
-    """Keep the topic compact enough for the four-line topic field."""
+    """Keep the topic compact while retaining its beginning and key ending."""
     if not isinstance(topic, str):
         return topic
     lines = []
@@ -95,10 +95,12 @@ def format_topic_for_form(topic, line_width=30, max_lines=4):
             else:
                 current = candidate
         lines.append(current.rstrip())
-    was_truncated = len(lines) > max_lines
-    lines = lines[:max_lines]
-    if was_truncated:
-        lines[-1] = lines[-1].rstrip(" .") + "..."
+    if len(lines) > max_lines:
+        if max_lines == 1:
+            lines = [lines[0].rstrip(" .") + "..."]
+        else:
+            lines = lines[:max_lines - 1] + [lines[-1].lstrip()]
+            lines[-1] = "..." + lines[-1].rstrip(" .") + "..."
     return "\n".join(lines)
 
 

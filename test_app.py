@@ -66,6 +66,7 @@ class ReflectionTests(unittest.TestCase):
         formatted = format_topic_for_form(topic)
         self.assertLessEqual(len(formatted.splitlines()), 4)
         self.assertTrue(formatted.endswith("..."))
+        self.assertIn("เชิงระบบ", formatted)
 
     def test_topic_wraps_at_thai_word_boundaries(self):
         formatted = format_topic_for_form("การจัดการเรียนรู้ระบบเครือข่ายคอมพิวเตอร์", line_width=15)
