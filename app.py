@@ -201,7 +201,7 @@ with col1:
     uploaded_file = st.file_uploader("📚 แนบไฟล์โครงการสอน (PDF, Word, TXT, รูปภาพ):", type=["pdf", "docx", "txt", "png", "jpg", "jpeg"])
 
 with col2:
-    st.markdown('<div class="section-heading">เลือกระดับชั้น</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-heading">เลือกระดับชั้น (คำนวณวันหยุดอัตโนมัติตามปฏิทิน)</div>', unsafe_allow_html=True)
     c_deg, c_yr = st.columns(2)
     with c_deg:
         degree = st.selectbox("ระดับ:", ["ปวช.", "ปวส."])
