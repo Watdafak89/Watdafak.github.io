@@ -232,7 +232,7 @@ with col2:
         st.markdown(f"**💻 รายละเอียด {i+1}:**")
         sc1, sc2, sc3 = st.columns(3)
         with sc1:
-            d_val = st.selectbox(f"วัน (ค {i+1}):", DAY_NAMES, index=default_days[i % len(default_days)], key=f"day_slot_{i}")
+            d_val = st.selectbox(f"วัน ( {i+1}):", DAY_NAMES, index=default_days[i % len(default_days)], key=f"day_slot_{i}")
         with sc2:
             default_start, default_end = default_times[i]
             start_time = st.selectbox(
