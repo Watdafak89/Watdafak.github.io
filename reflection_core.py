@@ -28,6 +28,8 @@ def source_part(name, content):
         if not text.strip():
             raise ValueError("ไม่พบข้อความใน Word หากเป็นภาพสแกน กรุณาอัปโหลด PDF หรือรูปภาพแทน")
         return types.Part.from_text(text=text)
+    if suffix == ".doc":
+        return types.Part.from_bytes(data=content, mime_type="application/msword")
     if suffix == ".txt":
         try:
             text = content.decode("utf-8-sig")

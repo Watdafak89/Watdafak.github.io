@@ -38,6 +38,11 @@ class ReflectionTests(unittest.TestCase):
         self.assertIn('ครู A & B <C> / สัปดาห์ 2', text)
         self.assertIn('สัปดาห์ 2', source_part('course.docx', output).text)
 
+    def test_legacy_word_input_is_sent_as_word_attachment(self):
+        part = source_part('course.doc', b'legacy Word content')
+        self.assertEqual(part.inline_data.mime_type, 'application/msword')
+        self.assertEqual(part.inline_data.data, b'legacy Word content')
+
     def test_word_render_centers_date_and_time_cells(self):
         document = docx.Document()
         table = document.add_table(rows=1, cols=2)
