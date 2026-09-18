@@ -148,7 +148,7 @@ DEPARTMENT_OPTIONS = [
     "เทคโนโลยีธุรกิจดิจิทัล",
     "อื่นๆ (ระบุเอง)"
 ]
-DEFAULT_TEACHER_NAME = "นายวัชรพงษ์ สุขแช่ม"
+DEFAULT_TEACHER_NAME = " "
 DEFAULT_DEPARTMENT = "เทคโนโลยีสารสนเทศ"
 
 st.markdown("""
@@ -181,7 +181,7 @@ with top_workflow:
     with st.container(border=True):
         st.markdown('<div class="api-panel">', unsafe_allow_html=True)
         st.markdown('<div class="top-panel-title">👤 ข้อมูลครูผู้สอน</div>', unsafe_allow_html=True)
-        teacher_name = st.text_input("ชื่อ-สกุลครูผู้สอน:", value=DEFAULT_TEACHER_NAME)
+        teacher_name = st.text_input("ชื่อ-สกุลครูผู้สอน (ตัวอย่าง นายรักเรียน เขียนดี):", value=DEFAULT_TEACHER_NAME)
         dept_choice = st.selectbox(
             "สาขาวิชา / แผนกวิชา:",
             DEPARTMENT_OPTIONS,
@@ -493,7 +493,7 @@ if "generated_document" in st.session_state:
 st.markdown("""
 <div class="footer-box">
 
-   <b> พัฒนาโดย <b>นายวัชรพงษ์  สุขแช่ม</b> ครู วิทยาลัยเทคนิคจันทบุรี<br/>
+
 
 </div>
 """, unsafe_allow_html=True)
