@@ -175,12 +175,12 @@ with top_api:
             else:
                 st.session_state.confirmed_gemini_api_key = confirmed_api_key
                 st.success("บันทึก API Key แล้ว")
-        st.markdown('<a href="https://aistudio.google.com/apikey" target="_blank">กดเพื่อรับ Gemini API Key  </a></div>', unsafe_allow_html=True)
+        st.markdown('<a href="https://aistudio.google.com/apikey" target="_blank">กดเพื่อรับ Gemini API Key </a></div>', unsafe_allow_html=True)
 
 with top_workflow:
     with st.container(border=True):
         st.markdown('<div class="api-panel">', unsafe_allow_html=True)
-        st.markdown('<div class="top-panel-title">👤 ข้อมูลครูผู้สอน</div>', unsafe_allow_html=True)
+        st.markdown('<div class="top-panel-title">😾 ข้อมูลครูผู้สอน</div>', unsafe_allow_html=True)
         teacher_name = st.text_input("ชื่อ-สกุลครูผู้สอน (ตัวอย่าง นายรักเรียน เขียนดี):", value=DEFAULT_TEACHER_NAME)
         dept_choice = st.selectbox(
             "สาขาวิชา / แผนกวิชา:",
@@ -220,7 +220,7 @@ with col2:
         "จำนวนวันสอนใน 1 สัปดาห์ :",
         options=[1, 2, 3, 4],
         format_func=lambda x: f"สอน {x} วัน / สัปดาห์",
-        index=2
+        index=0
     )
 
     slots_info = []
