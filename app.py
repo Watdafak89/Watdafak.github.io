@@ -425,12 +425,12 @@ if generate_clicked:
             seen_days = set()
             for slot in slots_info:
                 if not slot["day"]:
-                    date_lines.append("")
                     time_lines.append("")
                     continue
                 t_wday = day_map.get(slot["day"], 0)
                 dt_slot = lesson_date(start_date, week_num, t_wday)
-                date_lines.append("" if slot["day"] in seen_days else format_thai_date(dt_slot))
+                if slot["day"] not in seen_days:
+                    date_lines.append(format_thai_date(dt_slot))
                 seen_days.add(slot["day"])
                 time_lines.append(f"เวลา {slot['time']}")
 
