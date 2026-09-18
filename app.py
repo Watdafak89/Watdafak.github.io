@@ -163,14 +163,18 @@ with top_api:
     with st.container(border=True):
         st.markdown('<div class="api-panel">', unsafe_allow_html=True)
         st.markdown('<div class="top-panel-title">🔑 Gemini API Key</div>', unsafe_allow_html=True)
-        st.markdown('<div class="api-panel-caption" style="text-align:center;">ใส่ API Key แล้วกด ตกลง ก่อนสร้างเอกสาร</div>', unsafe_allow_html=True)
+        st.markdown('<div class="api-panel-caption" style="text-align:center;">ใส่ API Key แล้วกด บันทึก ก่อนสร้างเอกสาร</div>', unsafe_allow_html=True)
         api_key_input = st.text_input(
             "API Key", type="password", placeholder="วาง API Key ของคุณ",
             label_visibility="collapsed", key="gemini_api_key"
         )
-        if st.button("ตกลง", key="confirm_api_key", use_container_width=True):
-            st.session_state.confirmed_gemini_api_key = api_key_input.strip()
-            st.success("บันทึก API Key แล้ว")
+        if st.button("บันทึก", key="confirm_api_key", use_container_width=True):
+            confirmed_api_key = api_key_input.strip()
+            if not confirmed_api_key:
+                st.warning("กรุณาใส่ API Key")
+            else:
+                st.session_state.confirmed_gemini_api_key = confirmed_api_key
+                st.success("บันทึก API Key แล้ว")
         st.markdown('<a href="https://aistudio.google.com/apikey" target="_blank">รับ Gemini API Key ↗</a></div>', unsafe_allow_html=True)
 
 with top_workflow:
@@ -292,7 +296,7 @@ if generate_clicked:
     st.session_state.pop("generated_document", None)
     api_key = st.session_state.get("confirmed_gemini_api_key", "")
     if not api_key:
-        st.warning("⚠️ กรุณากรอก Gemini API Key แล้วกด ตกลง ที่แถบด้านซ้ายก่อนเริ่มใช้งาน")
+        st.warning("⚠️ กรุณากรอก Gemini API Key แล้วกด บันทึก ที่แถบด้านซ้ายก่อนเริ่มใช้งาน")
         st.stop()
     if not tpl_file:
         st.warning("⚠️ กรุณาแนบไฟล์ template.docx ของวิทยาลัย")
