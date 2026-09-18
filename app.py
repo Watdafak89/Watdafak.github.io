@@ -494,6 +494,6 @@ st.markdown("""
 <div class="footer-box">
 
    <b> พัฒนาโดย <b>นายวัชรพงษ์  สุขแช่ม</b> ครู วิทยาลัยเทคนิคจันทบุรี<br/>
-    <span style="font-size: 12px; color: #94A3B8;">ขับเคลื่อนด้วย Streamlit & Google Gemini AI Flash Engine</span>
+
 </div>
 """, unsafe_allow_html=True)
