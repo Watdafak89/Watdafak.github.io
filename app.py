@@ -254,11 +254,6 @@ with col2:
         "📅 วันที่เริ่มรอบสัปดาห์ที่ 1:",
         format="DD/MM/YYYY",
     )
-    st.caption(
-        f"วันที่เลือก: {start_date.day:02d}/{start_date.month:02d}/{start_date.year + 543}"
-    )
-
-    st.caption("แต่ละสัปดาห์นับ 7 วันจากวันที่นี้ คาบแรกจะไม่อยู่ก่อนวันเริ่มต้น")
     holiday_text = "8:ตรงกับวันหยุดนักขัตฤกษ์ตามประกาศสถานศึกษา"
 
 def format_thai_date(dt):
