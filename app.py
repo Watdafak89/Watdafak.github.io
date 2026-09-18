@@ -217,9 +217,9 @@ with col2:
     st.markdown(f"ระดับ: **{class_level}** | สาขา: **{department}** | กำหนดอัตโนมัติ: **{target_weeks} สัปดาห์**")
     st.markdown('<div class="section-heading">🗓️ ตารางสอน</div>', unsafe_allow_html=True)
     slots_count = st.selectbox(
-        "จำนวนคาบสอนใน 1 สัปดาห์ :",
+        "จำนวนวันสอนใน 1 สัปดาห์ :",
         options=[1, 2, 3, 4],
-        format_func=lambda x: f"สอน {x} คาบ / สัปดาห์" if x > 1 else "สอน 1 วัน /สัปดาห์",
+        format_func=lambda x: f"สอน {x} วัน / สัปดาห์",
         index=2
     )
 
@@ -227,7 +227,6 @@ with col2:
     default_days = [0, 1, 2, 3]
     time_options = [f"{hour:02d}.30" for hour in range(8, 18)]
     default_times = [("15.30", "16.30"), ("08.30", "10.30"), ("10.30", "12.30"), ("13.30", "15.30")]
-    total_hours = 0
 
     for i in range(slots_count):
         st.markdown(f"**💻 รายละเอียด {i+1}:**")
@@ -250,12 +249,6 @@ with col2:
             )
         t_val = f"{start_time}-{end_time} น."
         slots_info.append({"day": d_val, "time": t_val})
-        start_minutes = int(start_time[:2]) * 60 + int(start_time[3:])
-        end_minutes = int(end_time[:2]) * 60 + int(end_time[3:])
-        total_hours += (end_minutes - start_minutes) / 60
-        if total_hours >= slots_count:
-            slots_info.extend({"day": "", "time": ""} for _ in range(i + 1, slots_count))
-            break
 
     start_date = st.date_input(
         "📅 วันที่เริ่มรอบสัปดาห์ที่ 1:",
