@@ -201,7 +201,7 @@ with col1:
     uploaded_file = st.file_uploader("📚 แนบไฟล์โครงการสอน (PDF, Word, TXT, รูปภาพ):", type=["pdf", "doc", "docx", "txt", "png", "jpg", "jpeg"])
 
 with col2:
-    st.markdown('<div class="section-heading">🎓เลือกระดับชั้น (คำนวณวันหยุดอัตโนมัติตามปฏิทิน)</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-heading">🎓เลือกระดับชั้น </div>', unsafe_allow_html=True)
     c_deg, c_yr = st.columns(2)
     with c_deg:
         degree = st.selectbox("ระดับ:", ["ปวช.", "ปวส."])
@@ -215,7 +215,7 @@ with col2:
 
     class_level = f"{degree} {year_num}"
     st.markdown(f"ระดับ: **{class_level}** | สาขา: **{department}** | กำหนดอัตโนมัติ: **{target_weeks} สัปดาห์**")
-    st.markdown('<div class="section-heading">🗓️ ตารางสอน</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-heading">🗓️ ตารางสอน (คำนวณวันหยุดอัตโนมัติตามปฏิทิน)</div>', unsafe_allow_html=True)
     slots_count = st.selectbox(
         "จำนวนวันสอนใน 1 สัปดาห์ :",
         options=[1, 2, 3, 4],
